@@ -15,6 +15,10 @@ const devf = new Escuela (111,'Dev.f','Desconocido #12')
 const ricardo = new Alumno('RIGV17','Ricardo','González',27)
 const israel = new Alumno('IGVR17','Israel','González',28)
 const roberto = new Alumno('GGGV17','Roberto','González',26)
+const alumnos = [];
+alumnos.push(ricardo);
+alumnos.push(israel);
+alumnos.push(roberto);
 
 devf.AgregarGrupo(grupoA);
 devf.AgregarMateria(matematicasUno);
@@ -40,3 +44,28 @@ console.log(grupoA.PromedioPorGrupo());
 console.log(israel.ObtenerPromedioAlumno());
 
 console.log(grupoA.OrdernarAlumnosAsc());
+
+
+let CrearTabla = function(lista) {
+  let stringTabla = `<thead class="thead-dark">
+                        <tr>
+                          <th>Matricula</th>
+                          <th>Nombre</th>
+                          <th>Apellidos</th>
+                        </tr>
+                      </thead>`;
+  for (let alumno of lista) {
+    let fila = `<tr>
+                  <td>${alumno.matricula}</td>
+                  <td>${alumno.nombre}</td>
+                  <td>${alumno.apellidos}</td>
+                </tr>`
+    stringTabla +=fila;
+  }
+  return stringTabla;
+};
+document.getElementById("tablaAlumnos").innerHTML = CrearTabla(alumnos);
+document.addEventListener("DOMContentLoaded", function() {
+  var headerHeight = document.querySelector("header").offsetHeight;
+  document.documentElement.style.setProperty("--header-height", headerHeight + "px");
+});
